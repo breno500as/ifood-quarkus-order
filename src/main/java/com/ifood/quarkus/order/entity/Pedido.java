@@ -5,7 +5,7 @@ import java.util.List;
 import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
-@MongoEntity(collection = "pedidos", database = "pedidos")
+@MongoEntity(collection = "pedido", database = "pedido")
 public class Pedido extends PanacheMongoEntity {
 
 	public String cliente;
