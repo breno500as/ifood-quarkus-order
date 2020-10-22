@@ -3,6 +3,7 @@ package com.ifood.quarkus.order.entity;
 import java.util.ArrayList;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.json.bind.JsonbBuilder;
 
 import org.bson.types.Decimal128;
@@ -10,12 +11,13 @@ import org.eclipse.microprofile.reactive.messaging.Incoming;
 
 import com.ifood.quarkus.order.dto.PedidoRealizadoDTO;
 import com.ifood.quarkus.order.dto.PratoPedidoDTO;
-import com.ifood.quarkus.order.entity.Pedido;
-import com.ifood.quarkus.order.entity.Prato;
-import com.ifood.quarkus.order.entity.Restaurante;
+import com.ifood.quarkus.order.util.ESService;
 
 @ApplicationScoped
 public class PedidoRealizadoIncoming {
+	
+	@Inject
+	private ESService eslaticSearchService;
 
 	@Incoming("pedidos")
 	public void lerPedidos(PedidoRealizadoDTO dto) {
@@ -30,7 +32,7 @@ public class PedidoRealizadoIncoming {
 		restaurante.nome = dto.restaurante.nome;
 		p.restaurante = restaurante;
 		String json = JsonbBuilder.create().toJson(dto);
-		// elastic.index("pedidos", json);
+		eslaticSearchService.index("pedidos", json);
 		p.persist();
 
 	}
