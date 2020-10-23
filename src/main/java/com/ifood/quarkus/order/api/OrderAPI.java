@@ -53,7 +53,9 @@ public class OrderAPI {
 	/**
 	 * Define o tipo de autorização do client SockJSBridgeOptions: addOutboundPermitted (receber eventos) ou  addInboundPermitted(enviar dados).
 	 *  Um evento pode ser disparado a partir de:
-	 *  Um insert de registro em um banco de dados, ou em uma nova mensagem chegada no kafka, ou nesse caso uma chamada de uma api rest.
+	 *  Um insert de um registro em um banco de dados sincronizado com a ferramenta debezium que notifica 
+	 *  o kafka para enviar um evento para o websocket ou o elasticsearch / kibana fornecendo um dashboard de localização dos entregadores, 
+	 *  ou nesse caso uma chamada de uma api rest.
 	 *  Assim que o evento chega no client automaticamente o websocket server envia o informação para o websocket client através da rota localizacoes
 	 * @return
 	 */
