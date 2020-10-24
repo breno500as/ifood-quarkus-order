@@ -5,12 +5,16 @@ import java.util.List;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.json.bind.JsonbBuilder;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import org.bson.types.ObjectId;
+import org.jboss.logging.Logger;
 
 import com.ifood.quarkus.order.entity.Localizacao;
 import com.ifood.quarkus.order.entity.Pedido;
@@ -23,7 +27,13 @@ import io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 import io.vertx.mutiny.core.eventbus.EventBus;
 
+
+@Path("/orders")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class OrderAPI {
+	
+	private static final Logger LOG = Logger.getLogger(OrderAPI.class);
 	
 	/**
 	 * Implementação do vertx para criação do WebSocket
@@ -97,6 +107,8 @@ public class OrderAPI {
 	
 	@GET
 	public List<PanacheMongoEntityBase> getPedidos() {
+		LOG.info("isso só pode ser braminha");
+		LOG.infov("BBs {0}", "1");
 		return Pedido.listAll();
 	}
 }
