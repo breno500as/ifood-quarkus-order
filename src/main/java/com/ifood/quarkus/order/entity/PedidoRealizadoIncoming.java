@@ -23,6 +23,7 @@ public class PedidoRealizadoIncoming {
 	public void lerPedidos(PedidoRealizadoDTO dto) {
 		System.out.println("-----------------");
 		System.out.println(dto);
+		
 
 		Pedido p = new Pedido();
 		p.cliente = dto.cliente;
