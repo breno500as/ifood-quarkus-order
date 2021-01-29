@@ -35,6 +35,7 @@ public class PedidoRealizadoIncoming {
 		String json = JsonbBuilder.create().toJson(dto);
 		eslaticSearchService.index("pedidos", json);
 		p.persist();
+		
 
 	}
 
